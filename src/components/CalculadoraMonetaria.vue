@@ -1,33 +1,40 @@
 <template>
-  <v-parallax
-    dark
-    src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg"
+  <v-img
+    :dark="tema"
+    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+    height="660"
   >
-    <v-row
-      align="center"
-      justify="center"
-    >
-      <v-col
-        class="text-center"
-        cols="12"
-      >
-        <h1 class="text-h4 font-weight-thin mb-4">
-          Vuetify
-        </h1>
-        <h4 class="subheading">
-          Build your application today!
-        </h4>
-      </v-col>
-    </v-row>
-  </v-parallax>
+  <v-card>
+    <v-toolbar-title>
+      <v-row class="center">
+        <v-col cols="6">
+          <h1>Calculadora</h1>
+        </v-col>
+        <v-col cols="6">
+          <v-checkbox class="center" label="Tema" v-model="tema"/>
+        </v-col>
+      </v-row>
+    </v-toolbar-title>
+  </v-card>
+  </v-img>
 </template>
 
 <script>
   export default {
-    
+    data() {
+      return {
+        tema: false,
+      }
+    }
   }
 </script>
 
 <style scoped>
+.teste{
+  background-color: blue;
+}
 
+.center {
+  text-align: end !important;
+}
 </style>
