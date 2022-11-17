@@ -1,32 +1,113 @@
 <template>
-  <v-img
-    :dark="tema"
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-    height="660"
-  >
-  <v-card>
-    <v-toolbar-title>
-      <v-row class="center">
-        <v-col cols="6">
-          <h1>Calculadora</h1>
-        </v-col>
-        <v-col cols="6">
-          <v-checkbox class="center" label="Tema" v-model="tema"/>
-        </v-col>
-      </v-row>
-    </v-toolbar-title>
-  </v-card>
-  </v-img>
+    <v-img
+        :dark="tema"
+        src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+        height="657"
+    >
+        <v-card>
+            <v-toolbar-title>
+                <v-row>
+                    <v-col cols="5">
+                        <v-menu
+                            bottom
+                            left
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    icon
+                                    v-bind="attrs"
+                                    v-on="on"
+                                >
+                                    <v-icon>mdi-dots-vertical</v-icon>
+                                </v-btn>
+                            </template>
+                            <v-list>
+                                <v-list-item  @click="() => {}">
+                                    <v-list-item-title @click="temaClaro()">Tema Claro</v-list-item-title>
+                                </v-list-item>
+
+                                <v-list-item  @click="() => {}">
+                                    <v-list-item-title @click="temaEscuro()">Tema Escuro</v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                    </v-col>
+                    <v-col>
+                        <h1>Calculadora</h1>
+                    </v-col>
+                </v-row>
+            </v-toolbar-title>
+        </v-card>
+        <v-row class="mt-16">
+            <v-col cols="6" offset="3">
+                <v-card>
+                    <v-row>
+                        <v-col class="centro">
+                            <h3>Cáculo Monetário</h3>
+                        </v-col>
+                    </v-row>
+                    <v-row class="mt-6">
+                        <v-col cols="5" offset="1" class="mt-10">
+                            <input-date label="Data Inicial" v-model="dataInicio" :dark="tema" />
+                            <!--<v-text-field v-model="dataInicio" outlined label="Data Inicial" dense/>-->
+                        </v-col>
+                        <v-col cols="5" class="mt-10">
+                            <input-date label="Data Final" v-model="dataFim" :dark="tema" />
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+                        <v-col cols="5" offset="1" class="mt-8">
+                            <v-text-field v-model="valorMonetario" outlined label="Valor" dense/>
+                        </v-col>
+                        <v-col cols="5" class="mt-8">
+                            <v-text-field v-model="result" outlined label="Resultado" dense/>
+                        </v-col>
+                    </v-row>
+                    <v-row class="mb-16">
+                        <v-col class="centralizaBotao">
+                            <v-btn color="primary" >
+                                Calcular
+                            </v-btn>
+                            <v-btn class="ml-4" color="error" >
+                                Calcular
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-img>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        tema: false,
-      }
+    import InputDate from '../shared/inputDate.vue';
+    
+    export default {
+        components:{
+            InputDate
+        },
+
+        data() {
+            return {
+                tema: false,
+                dataInicio: '',
+                dataFim: '',
+                valorMonetario: '',
+                result: '',
+            }
+        },
+    
+        methods:{
+            temaEscuro(){
+                this.tema = true;
+            },
+
+            temaClaro(){
+                this.tema = false;
+            }
+        }
     }
-  }
 </script>
 
 <style scoped>
@@ -34,7 +115,10 @@
   background-color: blue;
 }
 
-.center {
-  text-align: end !important;
+.centro{
+    text-align: center;
+}
+.centralizaBotao{
+    margin-left: 209px;
 }
 </style>
