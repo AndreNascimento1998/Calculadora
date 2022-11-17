@@ -21,6 +21,7 @@
         props:{
             outlined:{
                 type: Boolean,
+                default: false,
             },
             
             label:{
@@ -29,6 +30,7 @@
 
             dense:{
                 type: Boolean,
+                default: false,
             },
             
             dark:{
@@ -42,7 +44,7 @@
 
         data () {
             return {
-                formatado:'',
+                valorFormatado:'',
                 valorDinheiro: '',
                 money: {
                 decimal: ',',
@@ -56,15 +58,20 @@
 
         watch:{
             valorDinheiro(novoValor){
-                this.formatado = this.parseBr(novoValor);
-            }
+                this.valorFormatado = this.parseBr(novoValor);
+            },
+
+            valorFormatado() {
+                this.$emit('input', this.valorFormatado);
+            },
         },
         
         methods:{
             parseBr(dinheiro){
-                debugger;
-                let valor = dinheiro.replace(',', '.');
-                return valor
+                let valorTrocandoVirgula = dinheiro.replace(',', '$');
+                let valorTrocandoPonto = valorTrocandoVirgula.replaceAll('.', ',');
+                let valorFormatado = valorTrocandoPonto.replace('$', '.');
+                return valorFormatado;
             }
         },
 

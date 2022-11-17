@@ -9,69 +9,78 @@
             min-width="auto"
             :dark="dark"
         >
-        <template v-slot:activator="{ on, attrs }">
-            <v-text-field
-                v-model="formata"
-                :label="label"
-                prepend-icon="mdi-calendar"
-                readonly
-                v-bind="attrs"
-                v-on="on"
-            ></v-text-field>
-        </template>
-            <v-date-picker
-                v-model="date"
-                @input="menu2 = false"
+            <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                    v-model="formata"
+                    :label="label"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    :outlined="outlined"
+                    :dense="dense"
+                    v-bind="attrs"
+                    v-on="on"
+                />
+            </template>
+            <v-date-picker 
+                v-model="date" 
+                @input="menu2=false" 
                 type="month"
-            ></v-date-picker>
+            />
         </v-menu>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'InputDate',
-        
-        //Data atual = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
+export default {
+    name: 'InputDate',
 
-        data: () => ({
-            date: '',
-            menu: false,
-            modal: false,
-            menu2: false,
-            formata: '',
-        }),
+    //Data atual = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
 
-        props:{
-            dark: {
-                type: Boolean,
-            },
-            
-            label:{
-                type: String,
-                default: '',
-            }
+    data: () => ({
+        date: '',
+        menu: false,
+        modal: false,
+        menu2: false,
+        formata: '',
+    }),
+
+    props: {
+        dark: {
+            type: Boolean,
         },
 
-        watch: {
-            date(novo) {
-                this.formata = this.parseBr(novo);
-            },
+        label: {
+            type: String,
+            default: '',
+        },
+        dense:{
+            type: Boolean,
+            default: false,
+        },
+        outlined:{
+            type: Boolean,
+            default: false,
+        },
+    },
 
-            formata(){
-                this.$emit('input', this.formata);
-            },
+    watch: {
+        date(novo) {
+            this.formata = this.parseBr(novo);
         },
 
-        methods: {
-            parseBr(dataNova){
-                let [ano, mes] = dataNova.split('-');
-                return `${mes}/${ano}`;
-            }
+        formata() {
+            this.$emit('input', this.formata);
         },
-    }
+    },
+
+    methods: {
+        parseBr(dataNova) {
+            let [ano, mes] = dataNova.split('-');
+            return `${mes}/${ano}`;
+        },
+    },
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

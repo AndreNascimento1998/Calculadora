@@ -48,19 +48,43 @@
                     </v-row>
                     <v-row class="mt-6">
                         <v-col cols="5" offset="1" class="mt-10">
-                            <input-date label="Data Inicial" v-model="dataInicio" :dark="tema" />
+                            <input-date 
+                                label="Data Inicial" 
+                                v-model="dataInicio" 
+                                :dark="tema"
+                                outlined
+                                dense
+                            />
                         </v-col>
                         <v-col cols="5" class="mt-10">
-                            <input-date label="Data Final" v-model="dataFim" :dark="tema" />
+                            <input-date 
+                                label="Data Final"
+                                v-model="dataFim" 
+                                :dark="tema" 
+                                outlined
+                                dense
+                            />
                         </v-col>
                     </v-row>
 
                     <v-row>
                         <v-col cols="5" offset="1" class="mt-8">
-                            <input-money v-model="valorMonetario" prefix="R$" outlined :dark="tema" label="Valor" dense/>
+                            <input-money 
+                                v-model="valorMonetario" 
+                                prefix="R$" 
+                                outlined 
+                                :dark="tema" 
+                                label="Valor" 
+                                dense
+                            />
                         </v-col>
                         <v-col cols="5" class="mt-8">
-                            <v-text-field v-model="result" outlined label="Resultado" dense/>
+                            <v-text-field 
+                                v-model="result" 
+                                outlined 
+                                label="Resultado" 
+                                dense
+                            />
                         </v-col>
                     </v-row>
                     <v-row class="mb-16">
@@ -68,7 +92,7 @@
                             <v-btn color="primary" >
                                 Calcular
                             </v-btn>
-                            <v-btn class="ml-4" color="error" >
+                            <v-btn @click="calculo" class="ml-4" color="error" >
                                 Calcular
                             </v-btn>
                         </v-col>
@@ -82,6 +106,7 @@
 <script>
     import InputDate from '../shared/inputDate.vue';
     import InputMoney from '../shared/inputMoney.vue';
+    import axios from 'axios';
     
     export default {
         components:{
@@ -95,6 +120,7 @@
                 dataFim: '',
                 valorMonetario: '',
                 result: '',
+                indice:'',
             }
         },
     
@@ -105,7 +131,21 @@
 
             temaClaro(){
                 this.tema = false;
+            },
+
+            calculo(){
+
+            },
+
+            async buscaIndices(){
+                debugger
+                let resp = await axios.get('http://localhost:8000/api/ipca/2010/2020');
+                this.indice = resp;
             }
+        },
+
+        async mounted(){
+            await this.buscaIndices();
         }
     }
 </script>
