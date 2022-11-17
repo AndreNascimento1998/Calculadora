@@ -49,7 +49,6 @@
                     <v-row class="mt-6">
                         <v-col cols="5" offset="1" class="mt-10">
                             <input-date label="Data Inicial" v-model="dataInicio" :dark="tema" />
-                            <!--<v-text-field v-model="dataInicio" outlined label="Data Inicial" dense/>-->
                         </v-col>
                         <v-col cols="5" class="mt-10">
                             <input-date label="Data Final" v-model="dataFim" :dark="tema" />
@@ -58,7 +57,7 @@
 
                     <v-row>
                         <v-col cols="5" offset="1" class="mt-8">
-                            <v-text-field v-model="valorMonetario" outlined label="Valor" dense/>
+                            <input-money v-model="valorMonetario" prefix="R$" outlined :dark="tema" label="Valor" dense/>
                         </v-col>
                         <v-col cols="5" class="mt-8">
                             <v-text-field v-model="result" outlined label="Resultado" dense/>
@@ -82,10 +81,11 @@
 
 <script>
     import InputDate from '../shared/inputDate.vue';
+    import InputMoney from '../shared/inputMoney.vue';
     
     export default {
         components:{
-            InputDate
+            InputDate, InputMoney,
         },
 
         data() {
