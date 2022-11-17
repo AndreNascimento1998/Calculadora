@@ -11,7 +11,7 @@
         >
         <template v-slot:activator="{ on, attrs }">
             <v-text-field
-                v-model="date"
+                v-model="formata"
                 :label="label"
                 prepend-icon="mdi-calendar"
                 readonly
@@ -22,6 +22,7 @@
             <v-date-picker
                 v-model="date"
                 @input="menu2 = false"
+                type="month"
             ></v-date-picker>
         </v-menu>
     </div>
@@ -31,11 +32,14 @@
     export default {
         name: 'InputDate',
         
+        //Data atual = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
+
         data: () => ({
-            date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+            date: '',
             menu: false,
             modal: false,
             menu2: false,
+            formata: '',
         }),
 
         props:{
@@ -47,7 +51,24 @@
                 type: String,
                 default: '',
             }
-        }
+        },
+
+        watch: {
+            date(novo) {
+                this.formata = this.parseBr(novo);
+            },
+
+            formata(){
+                this.$emit('input', this.formata);
+            },
+        },
+
+        methods: {
+            parseBr(dataNova){
+                let [ano, mes] = dataNova.split('-');
+                return `${mes}/${ano}`;
+            }
+        },
     }
 </script>
 
