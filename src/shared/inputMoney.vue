@@ -9,6 +9,7 @@
             :dense="dense"
             :dark="dark"
             :prefix="prefix"
+            :disabled="disabled"
         />
     </div>
 </template>
@@ -39,6 +40,10 @@
 
             prefix:{
                 type: String,
+            },
+            disabled:{
+                type: Boolean,
+                default: false,
             }
         },
 
