@@ -134,11 +134,10 @@
             },
 
             calculo(){
-
+                
             },
 
             async buscaIndices(){
-                debugger
                 let resp = await axios.get('http://localhost:8000/api/ipca/2010/2020');
                 this.indice = resp;
             }
