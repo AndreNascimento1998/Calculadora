@@ -116,7 +116,7 @@
                 valorMonetario: '',
                 result: 0,
                 indice:'',
-            }
+            };
         },
     
         methods:{
