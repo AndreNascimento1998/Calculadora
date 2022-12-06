@@ -40,22 +40,26 @@
                             <v-row>
                                 <v-col cols="8" class="mt-6" offset="2">
                                     <v-text-field
+                                        v-model="email"
                                         append-icon="mdi-checkbox-marked-circle"
                                         label="E-mail"
                                         outlined
                                         dense
                                     />
                                     <v-text-field
+                                        v-model="senha"
+                                        :rules="[rules.min]"
+                                        counter
                                         :append-icon="mostrarSenha ? 'mdi-eye' : 'mdi-eye-off'"
                                         label="Senha"
                                         outlined
                                         dense
-                                        :type="mostrarSenha ? 'text' : 'Password'"
-                                        @click:append = "mostrarSenha = !mostraSenha"
+                                        :type="mostrarSenha ? senha : 'password'"
+                                        @click:append = "mostrarSenha = !mostrarSenha"
                                     />
                                 </v-col>
                                 <v-col cols="8" offset="2">
-                                    <v-btn to="/calculadora" class="mr-2" color="primary">Entrar</v-btn>
+                                    <v-btn @click="passarPagina()" class="mr-2" color="primary">Entrar</v-btn>
                                     <v-btn color="error">Voltar</v-btn>
                                 </v-col>
                                 <v-col to="#" class="mt-2">
@@ -83,17 +87,43 @@ export default {
             tema: false,
             temaLight: '#aee7eb',
             mostrarSenha: false,
+            email: '',
+            senha: '',
+            rules: {
+                min: v => v.length >= 8 || 'Mínimo 8 caracteres',
+            },
+            validacao : [
+                {id : 1, email: 'andre@hotmail.com', senha: '12345677'},
+                {id: 2, email: 'Admin', senha: '12345678'},
+                {id: 3, email: 'zeca@gmail.com',senha: '123456123'},
+                {id: 4, email: 'juka@google.com', senha: '789789789'},
+                {id: 5, email: 'salsa.@hotmail.com', senha: '123789456'}
+            ],
+            rota: '',
         };
     },
 
     methods: {
         escolhaTema(theme) {
+            debugger;
             if (theme === 'b') {
                 this.tema = false;
                 this.temaLight = '#aee7eb'
             } else if (theme === 'p') {
                 this.tema = true;
                 this.temaLight = false;
+            }
+        },
+
+        passarPagina(){
+            debugger
+            if(this.senha.length >= 8 && this.email){
+                let emailValidado = this.validacao.filter((result) => result.senha == this.senha);
+                if(this.email == emailValidado[0].email && this.senha == emailValidado[0].senha){
+                    this.$router.push('/calculadora');
+                }
+            }else {
+                alert('Senha ou email incorretos !');
             }
         },
     },

@@ -121,7 +121,7 @@
                 valorMonetario: '',
                 result: '',
                 indice:'',
-            }
+            };
         },
     
         methods:{
