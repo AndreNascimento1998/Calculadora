@@ -13,7 +13,13 @@ const routes = [
     {
         path: '/calculadora',
         name: 'calculadora',
-        component: () => import(/* webpackChunkName: "calculadora" */ '@/components/CalculadoraMonetaria')
+        component: () => import(/* webpackChunkName: "calculadora" */ '@/components/CalculadoraMonetaria'),
+    },
+
+    {
+        path:'/cadastro',
+        name: 'cadastro',
+        component: () => import(/* webpackChunkName: "cadastro") */ '@/login/cadastroNovo'),
     }
 ];
 

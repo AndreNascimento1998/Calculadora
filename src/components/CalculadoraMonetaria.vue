@@ -79,7 +79,7 @@
                             />
                         </v-col>
                         <v-col cols="5" class="mt-8">
-                            <span class="formataCampoSpanResultado">{{result}}</span>
+                            <span class="formataCampoSpanResultado">R$ {{result.toFixed(2)}}</span>
                         </v-col>
                     </v-row>
                     <v-row class="mb-16">
@@ -87,8 +87,8 @@
                             <v-btn @click="calculo" color="primary" >
                                 Calcular
                             </v-btn>
-                            <v-btn class="ml-4" color="error" >
-                                Calcular
+                            <v-btn to="/login" class="ml-4" color="error" >
+                                Voltar
                             </v-btn>
                         </v-col>
                     </v-row>

@@ -60,7 +60,6 @@
                                 </v-col>
                                 <v-col cols="8" offset="2">
                                     <v-btn @click="passarPagina()" class="mr-2" color="primary">Entrar</v-btn>
-                                    <v-btn color="error">Voltar</v-btn>
                                 </v-col>
                                 <v-col to="#" class="mt-2">
                                     <hr/>
@@ -71,7 +70,7 @@
                     </v-card>
                     <v-row>
                         <v-col>
-                            <v-btn class="mt-5" text dark>Cadastrar-se</v-btn>
+                            <v-btn to="/cadastro" class="mt-5" text dark>Cadastrar-se</v-btn>
                         </v-col>
                     </v-row>
                 </v-col>
