@@ -116,10 +116,12 @@ export default {
 
         passarPagina(){
             debugger
-            if(this.senha.length >= 8 && this.email){
-                let emailValidado = this.validacao.filter((result) => result.senha == this.senha);
+            let emailValidado = this.validacao.filter((result) => result.senha == this.senha);
+            if(this.senha.length >= 8 && emailValidado[0]){
                 if(this.email == emailValidado[0].email && this.senha == emailValidado[0].senha){
                     this.$router.push('/calculadora');
+                }else {
+                    alert('Senha ou email incorretos !');
                 }
             }else {
                 alert('Senha ou email incorretos !');

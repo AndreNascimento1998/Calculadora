@@ -5,7 +5,7 @@
             height="627"
         >
             <v-row>
-                <v-col class="mt-16 letra">
+                <v-col class="mt-10 letra">
                     <span>Atualizador Monetário</span>
                 </v-col>
             </v-row>
@@ -46,6 +46,7 @@
                         </v-row>
                         <v-col cols="4" offset="4">
                             <v-btn color="secondary" block>Cadastrar</v-btn>
+                            <v-btn color="error" class="mt-2" to="/" block>Voltar</v-btn>
                         </v-col>
                     </v-form>
                 </v-col>

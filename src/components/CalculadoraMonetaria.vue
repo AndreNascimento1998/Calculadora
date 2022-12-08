@@ -87,7 +87,7 @@
                             <v-btn @click="calculo" color="primary" >
                                 Calcular
                             </v-btn>
-                            <v-btn to="/login" class="ml-4" color="error" >
+                            <v-btn to="/" class="ml-4" color="error" >
                                 Voltar
                             </v-btn>
                         </v-col>
