@@ -19,7 +19,7 @@ const routes = [
     {
         path:'/cadastro',
         name: 'cadastro',
-        component: () => import(/* webpackChunkName: "cadastro") */ '@/login/cadastroNovo'),
+        component: () => import(/* webpackChunkName: "cadastro") */ '@/view/cadastroNovo'),
     }
 ];
 
