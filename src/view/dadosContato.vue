@@ -7,43 +7,103 @@
                 </v-col>
             </v-row>
             <v-row class="margemToolbar">
-                <v-col class="naoPadding" cols="3" offset="3">
-                    <v-text-field label="logradouro" dense outlined background-color="white" />
+                <v-col class="naoPadding mr-1" cols="3" offset="3">
+                    <v-text-field 
+                            v-model="dadosContato.logradouro"
+                            label="Logradouro" 
+                            dense
+                            outlined 
+                            background-color="white" 
+                    />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field label="numero" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosContato.numero"
+                        label="Número" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="naoPadding mr-1" cols="3" offset="3">
-                    <v-text-field label="complemento" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosContato.complemento"
+                        label="Complemento"
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field label="bairro" dense outlined background-color="white" />
+                    <v-text-field
+                        v-model="dadosContato.bairro" 
+                        label="Bairro" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="naoPadding mr-1" cols="3" offset="3">
-                    <v-text-field label="CEP" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosContato.cep" 
+                        label="CEP" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field label="UF" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosContato.uf" 
+                        label="UF" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="naoPadding mr-1" cols="3" offset="3">
-                    <v-text-field label="Cidade" dense outlined background-color="white" />
+                    <v-text-field
+                        v-model="dadosContato.cidade" 
+                        label="Cidade" 
+                        dense 
+                        outlined
+                        background-color="white"
+                    />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field label="Telefone" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosContato.telefone" 
+                        label="Telefone" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="naoPadding mr-1" cols="3" offset="3">
-                    <v-text-field label="E-mail" dense outlined background-color="white" />
+                    <v-text-field
+                        v-model="dadosContato.email" 
+                        label="E-mail" 
+                        dense
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field label="Outro e-mail" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosContato.email2" 
+                        label="Outro e-mail" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
             </v-row>
         </v-form>
@@ -51,8 +111,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
     name: 'dadosContato',
+    computed: {
+        ...mapGetters('usuario', ['dadosContato']),
+    }, 
 
     data() {
         return {};

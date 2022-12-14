@@ -19,6 +19,7 @@
                     :dense="dense"
                     v-bind="attrs"
                     v-on="on"
+                    :background-color="background"
                 />
             </template>
             <v-date-picker 
@@ -61,6 +62,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        background: {
+            type: String,
+            default: '',
+        }
     },
 
     watch: {

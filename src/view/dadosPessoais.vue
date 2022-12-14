@@ -7,27 +7,63 @@
                 </v-col>
             </v-row>
             <v-row class="margemToolbar">
-                <v-col class="naoPadding" cols="3" offset="3">
-                    <v-text-field label="Nome" dense outlined background-color="white" />
+                <v-col class="naoPadding mr-1" cols="3" offset="3">
+                    <v-text-field 
+                        v-model="dadosPessoais.nome" 
+                        label="Nome" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field label="dataNascimento" dense outlined background-color="white" />
+                    <input-date 
+                        v-model="dadosPessoais.dataNascimento" 
+                        label="Data Nascimento" 
+                        dense 
+                        outlined 
+                        background="white" 
+                    />
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="naoPadding mr-1" cols="3" offset="3">
-                    <v-text-field label="Gênero" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosPessoais.genero" 
+                        label="Gênero" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field label="Cpf" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosPessoais.cpf" 
+                        label="Cpf" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="naoPadding mr-1" cols="3" offset="3">
-                    <v-text-field label="RG" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosPessoais.rg" 
+                        label="RG" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field label="UF Emissor" dense outlined background-color="white" />
+                    <v-text-field 
+                        v-model="dadosPessoais.ufEmissor" 
+                        label="UF Emissor" 
+                        dense 
+                        outlined 
+                        background-color="white" 
+                    />
                 </v-col>
             </v-row>
         </v-form>
@@ -35,8 +71,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import InputDate from '@/shared/inputDate.vue'
 export default {
     name: 'dadosPessoais',
+    components: {
+        InputDate,
+    },
+    computed: {
+        ...mapGetters('usuario', ['dadosPessoais']),
+    },
 
     data() {
         return {};
