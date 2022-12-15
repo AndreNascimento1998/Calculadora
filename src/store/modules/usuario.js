@@ -1,3 +1,5 @@
+import axios from "axios";
+
 let state = () => ({
     dadosContato : {
         logradouro: '',
@@ -25,7 +27,12 @@ let state = () => ({
         email: '',
         senha: '',
         outraSenha: '',
-    }
+    },
+
+    api : {
+        uf: [],
+        cidades: '',
+    },
 });
 
 const getters = {
@@ -40,14 +47,28 @@ const getters = {
     dadosContato(state) {
         return state.dadosContato;
     },
+
+    pickEstados(state) {
+        return state.api.uf;
+    }
+
 };
 
 const mutations = {
-
+    atualizaUfs(state, dadosEstados){
+        const resp = dadosEstados.data.estados;
+        state.api.uf = resp.map((item) => ({
+            id: item.id,
+            uf: item.uf
+        }));
+    },
 };
 
-const mapActions = {
-
+const actions = {
+    async pegaEstados({commit}){
+        let resp = await axios.get('http://localhost:8000/api/estado');
+        commit('atualizaUfs', resp);
+    },
 };
 
 export default {
@@ -55,6 +76,6 @@ export default {
     state,
     getters,
     mutations,
-    mapActions
+    actions
 
 }

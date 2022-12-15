@@ -57,23 +57,31 @@
                     />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field 
+                    <v-select
                         v-model="dadosContato.uf" 
                         label="UF" 
                         dense 
                         outlined 
                         background-color="white" 
+                        :items="pickEstados"
+                        return-object
+                        item-value="id"
+                        item-text="uf"
                     />
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="naoPadding mr-1" cols="3" offset="3">
-                    <v-text-field
+                    <v-select
                         v-model="dadosContato.cidade" 
                         label="Cidade" 
                         dense 
                         outlined
                         background-color="white"
+                        :items="cidade"
+                        return-object
+                        item-value="id"
+                        item-text="nome"
                     />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
@@ -112,15 +120,32 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default {
     name: 'dadosContato',
     computed: {
-        ...mapGetters('usuario', ['dadosContato']),
+        ...mapGetters('usuario', ['dadosContato', 'pickEstados']),
     }, 
 
     data() {
-        return {};
+        return {
+            cidade: {},
+        }
     },
+
+    methods: {
+        async buscaCidade(id){
+            debugger
+            const resp = await axios.get(`http://localhost:8000/api/${id}/cidades`);
+            this.cidade = resp.data.cidades;
+        }
+    },
+
+    watch: {
+        'dadosContato.uf'(){
+            this.buscaCidade(this.dadosContato.uf.id);
+        }
+    }
 };
 </script>
 

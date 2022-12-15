@@ -57,12 +57,17 @@
                     />
                 </v-col>
                 <v-col class="naoPadding" cols="3">
-                    <v-text-field 
+                    <v-select
                         v-model="dadosPessoais.ufEmissor" 
                         label="UF Emissor" 
                         dense 
                         outlined 
                         background-color="white" 
+                        :items="pickEstados"
+                        return-object
+                        item-value="id"
+                        item-text="uf"
+
                     />
                 </v-col>
             </v-row>
@@ -79,7 +84,7 @@ export default {
         InputDate,
     },
     computed: {
-        ...mapGetters('usuario', ['dadosPessoais']),
+        ...mapGetters('usuario', ['dadosPessoais', 'pickEstados']),
     },
 
     data() {
