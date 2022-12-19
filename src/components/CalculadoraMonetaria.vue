@@ -52,6 +52,8 @@
                                 label="Data Inicial" 
                                 v-model="dataInicio" 
                                 :dark="tema"
+                                min="1998-02"
+                                :max="dataMaxInputInical"
                                 outlined
                                 dense
                             />
@@ -61,6 +63,9 @@
                                 label="Data Final"
                                 v-model="dataFim" 
                                 :dark="tema" 
+                                :max="dataHoje"
+                                :min="dataMinInputFinal"
+                                :valorInicial="dateToday"
                                 outlined
                                 dense
                             />
@@ -116,9 +121,28 @@
                 valorMonetario: '',
                 result: 0,
                 indice:'',
+                dateToday: '',
             };
         },
     
+        computed: {
+            dataHoje(){
+                const resp = new Date();
+                return `${resp.getFullYear()}-${resp.getMonth() + 1}`;
+            },
+
+            dataMaxInputInical() {
+                let [mes, ano] = this.dataFim.split('/');
+                return `${ano}-${mes}`;
+            },
+
+            dataMinInputFinal() {
+                debugger
+                let [mes, ano] = this.dataInicio.split('/')
+                return `${ano}-${mes}`;
+            },
+        },
+
         methods:{
             temaEscuro(){
                 this.tema = true;
@@ -166,6 +190,9 @@
                 return this.indice = resp.data;
             }
         },
+        mounted(){
+            this.dateToday = this.dataHoje;
+        }
     }
 </script>
 

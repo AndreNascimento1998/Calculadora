@@ -129,15 +129,19 @@ export default {
 
     data() {
         return {
-            cidade: {},
+            cidade: [],
         }
     },
 
     methods: {
         async buscaCidade(id){
-            debugger
             const resp = await axios.get(`http://localhost:8000/api/${id}/cidades`);
-            this.cidade = resp.data.cidades;
+            let cidadeObject = resp.data.cidades;
+            this.cidade = cidadeObject.map((item) => ({
+                id: item.id,
+                nome: item.nome
+            }))
+            console.log(this.cidade)
         }
     },
 

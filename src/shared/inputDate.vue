@@ -6,7 +6,6 @@
             :nudge-right="40"
             transition="scale-transition"
             offset-y
-            min-width="auto"
             :dark="dark"
         >
             <template v-slot:activator="{ on, attrs }">
@@ -26,6 +25,8 @@
                 v-model="date" 
                 @input="menu2=false" 
                 type="month"
+                :max="max"
+                :min="min"
             />
         </v-menu>
     </div>
@@ -65,6 +66,18 @@ export default {
         background: {
             type: String,
             default: '',
+        },
+        min: {
+            type: [Date, String],
+            default: '',
+        },
+        max: {
+            type: [Date, String],
+            default: '',
+        },
+        valorInicial: {
+            type: [Date, String],
+            default: '',
         }
     },
 
@@ -76,6 +89,10 @@ export default {
         formata() {
             this.$emit('input', this.formata);
         },
+
+        valorInicial() {
+            this.date = this.valorInicial;
+        }
     },
 
     methods: {

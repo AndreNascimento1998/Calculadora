@@ -73,7 +73,6 @@
         
         methods:{
             parseBr(dinheiro){
-                debugger
                 let valorTrocandoVirgula = dinheiro.replace(',', '$');
                 let valorTrocandoPonto = valorTrocandoVirgula.replaceAll('.', ',');
                 let valorFormatado = valorTrocandoPonto.replace('$', '.');

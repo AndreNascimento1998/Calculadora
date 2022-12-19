@@ -2,22 +2,32 @@
     <v-img 
         src="@/assets/cadastro/cadastro.webp"
     >
-        <p class="letra mt-10">Calculadora Monetária</p>
-        <dados-contato/>
-        <dados-pessoais class="mt-5"/>
-        <dados-usuario class="mt-5" />
-        <v-row class="text-center">
-            <v-col>
-                <v-btn class="mr-1" color="primary">Salvar</v-btn>
-                <v-btn color="error">Voltar</v-btn>
+        <v-row>
+            <v-col offset="2" cols="8" class="teste">
+                <dados-contato/>
             </v-col>
         </v-row>
-        
+        <v-row>
+            <v-col cols="8" offset="2" class="teste">
+                <dados-pessoais class="mt-5"/>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="8" offset="2" class="teste">
+                <dados-usuario class="mt-5" />
+            </v-col>
+        </v-row>
+        <v-row class="text-center">
+            <v-col cols="8" offset="2" class="teste">
+                <v-btn @click="salvar()" class="mr-1" color="primary">Salvar</v-btn>
+                <v-btn to="/" color="error">Voltar</v-btn>
+            </v-col>
+        </v-row>
     </v-img>
 </template>
 
 <script>
-    import { mapActions } from 'vuex';
+    import { mapActions, mapMutations } from 'vuex';
     import dadosContato from './dadosContato.vue';
     import dadosPessoais from './dadosPessoais.vue';
     import dadosUsuario from './dadosUsuario.vue';
@@ -30,7 +40,13 @@
         },
 
         methods:{
-            ...mapActions('usuario', ['pegaEstados']),
+            ...mapActions('usuario', ['pegaEstados', 'saveUser']),
+            ...mapMutations('usuario', ['reset']),
+            salvar(){
+                this.saveUser();
+                this.$router.push('/');
+                this.reset();
+            },
         },
 
         async mounted(){
@@ -41,7 +57,7 @@
 
 <style scoped>
 .teste{
-    background-color: black;
+    background-color: rgb(255, 253, 253);
 }
 .letra{
     font-family: Arial, Helvetica, sans-serif;

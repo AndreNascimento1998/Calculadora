@@ -80,7 +80,13 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
+
+    computed: {
+        ...mapGetters('usuario', ['emailSenha'])
+    },
+
     data() {
         return {
             tema: false,
@@ -103,8 +109,9 @@ export default {
     },
 
     methods: {
+        ...mapActions('usuario', ['pegaUser']),
+
         escolhaTema(theme) {
-            debugger;
             if (theme === 'b') {
                 this.tema = false;
                 this.temaLight = '#aee7eb'
@@ -115,10 +122,10 @@ export default {
         },
 
         passarPagina(){
-            debugger
-            let emailValidado = this.validacao.filter((result) => result.senha == this.senha);
-            if(this.senha.length >= 8 && emailValidado[0]){
-                if(this.email == emailValidado[0].email && this.senha == emailValidado[0].senha){
+            debugger;
+            let resp = this.emailSenha.filter((result) => result.email == this.email);
+            if(this.senha.length >= 8 && resp[0]){
+                if(this.email == resp[0].email && this.senha == resp[0].senha){
                     this.$router.push('/calculadora');
                 }else {
                     alert('Senha ou email incorretos !');
@@ -127,6 +134,10 @@ export default {
                 alert('Senha ou email incorretos !');
             }
         },
+    },
+
+    async mounted(){
+        await this.pegaUser();
     },
 };
 </script>
