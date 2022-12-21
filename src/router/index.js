@@ -19,7 +19,12 @@ const routes = [
     {
         path:'/cadastro',
         name: 'cadastro',
-        component: () => import(/* webpackChunkName: "cadastro") */ '@/view/cadastroNovo'),
+        component: () => import(/* webpackChunkName: "cadastro" */ '@/view/cadastroNovo'),
+    },
+    {
+        path:'/inicio/:id',
+        name: 'inicio',
+        component: () => import(/* webpackChunkName: "inicio" */ '@/components/PaginaInicial'),
     }
 ];
 

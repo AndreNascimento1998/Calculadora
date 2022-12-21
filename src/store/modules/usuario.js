@@ -58,6 +58,7 @@ const getters = {
         return state.api.uf = resp.map((item) => ({
             email: item.email,
             senha: item.senha,
+            id: item.id,
         }))
     },
 
@@ -137,7 +138,6 @@ const actions = {
     },
 
     async pegaUser({state}){
-        debugger
         const resp = await axios.get('http://localhost:8000/api/usuario');
         state.api.user = resp.data.usuarios;
     },

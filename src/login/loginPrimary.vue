@@ -122,11 +122,10 @@ export default {
         },
 
         passarPagina(){
-            debugger;
             let resp = this.emailSenha.filter((result) => result.email == this.email);
             if(this.senha.length >= 8 && resp[0]){
                 if(this.email == resp[0].email && this.senha == resp[0].senha){
-                    this.$router.push('/calculadora');
+                    this.$router.push(`/inicio/${resp[0].id}`);
                 }else {
                     alert('Senha ou email incorretos !');
                 }

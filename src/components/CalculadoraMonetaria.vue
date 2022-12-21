@@ -93,7 +93,7 @@
                                 Calcular
                             </v-btn>
                             <v-btn to="/" class="ml-4" color="error" >
-                                Voltar
+                                Voltar para Página Inicial
                             </v-btn>
                         </v-col>
                     </v-row>

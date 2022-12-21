@@ -44,7 +44,7 @@
             ...mapMutations('usuario', ['reset']),
             salvar(){
                 this.saveUser();
-                this.$router.push('/');
+                this.$router.push('/inicio');
                 this.reset();
             },
         },
