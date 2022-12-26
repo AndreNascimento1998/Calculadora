@@ -90,7 +90,7 @@ export default {
     data() {
         return {
             tema: false,
-            temaLight: '#aee7eb',
+            temaLight: '#ffffff',
             mostrarSenha: false,
             email: '',
             senha: '',
@@ -114,7 +114,7 @@ export default {
         escolhaTema(theme) {
             if (theme === 'b') {
                 this.tema = false;
-                this.temaLight = '#aee7eb'
+                this.temaLight = '#ffffff'
             } else if (theme === 'p') {
                 this.tema = true;
                 this.temaLight = false;
@@ -159,6 +159,6 @@ export default {
 }
 
 .temaLight{
-    background-color: #b3d3d5;
+    background-color: #ffffff;
 }
 </style>

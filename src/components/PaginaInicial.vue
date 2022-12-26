@@ -8,7 +8,7 @@
                 <p class="titulo margemTop">Atualização monetária</p>
             </v-col>
             <v-col offset="5">
-                <v-btn class="mt-6" text color="blue"><p>Editar</p></v-btn>
+                <v-btn @click="paginaEdit(id)" class="mt-5" text color="blue"><p>Editar</p></v-btn>
             </v-col>
         </v-row>        
         <v-row>
@@ -45,8 +45,47 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex'
     export default {
-        
+        data() {
+            return {
+                idCadastro: '',
+                estados: '',
+            }
+        },
+
+        computed: {
+            ...mapGetters('usuario', ['pickEstados']),
+            id(){
+                let id = this.$route.params.id
+                if(id){
+                    return parseFloat(id)
+                }
+                return false;
+            }
+        },
+
+        methods: {
+            ...mapActions('usuario', ['usuarioId', 'pegaEstados']),
+            ...mapMutations('usuario', ['paginaEdicao']),
+
+            async paginaEdit(){
+                debugger
+                let usuario = await this.usuarioId(this.id);
+                let uf = await this.filtroUf(usuario.uf);
+                console.log(uf)
+                this.paginaEdicao(usuario, uf);
+                this.$router.push(`/edit/${this.id}`);
+            },
+
+            async filtroUf(uf){
+                const ufFiltrada = this.pickEstados.filter((resp) => resp.uf == uf);
+                return ufFiltrada;
+            }
+        },
+        async mounted() {
+            await this.pegaEstados();
+        }
     }
 </script>
 

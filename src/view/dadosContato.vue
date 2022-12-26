@@ -61,7 +61,7 @@
                         v-model="dadosContato.uf" 
                         label="UF" 
                         dense 
-                        outlined 
+                        outlined
                         background-color="white" 
                         :items="pickEstados"
                         return-object

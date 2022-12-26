@@ -21,6 +21,7 @@
                         v-model="dadosPessoais.dataNascimento" 
                         label="Data Nascimento" 
                         dense 
+                        :valorInicial="quandoEdita"
                         outlined 
                         background="white" 
                     />
@@ -88,7 +89,9 @@ export default {
     },
 
     data() {
-        return {};
+        return {
+            quandoEdita: '',
+        };
     },
 };
 </script>

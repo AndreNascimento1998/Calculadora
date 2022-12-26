@@ -100,7 +100,7 @@ export default {
             let [ano, mes] = dataNova.split('-');
             return `${mes}/${ano}`;
         },
-    },
+    }, 
 };
 </script>
 

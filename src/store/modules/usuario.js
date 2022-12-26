@@ -95,6 +95,27 @@ const mutations = {
         state.dadosUsuario.email = '',
         state.dadosUsuario.senha = '',
         state.dadosUsuario.outraSenha = ''
+    },
+
+    paginaEdicao( state, dados, ufde ){
+        debugger
+        state.dadosContato.logradouro = dados.logradouro,
+        state.dadosContato.numero = dados.numero,
+        state.dadosContato.complemento = dados.complemento,
+        state.dadosContato.bairro = dados.bairro,
+        state.dadosContato.cep = dados.cep,
+        state.dadosContato.uf = ufde,
+        state.dadosContato.cidade = dados.cidade,
+        state.dadosContato.telefone = dados.telefone,
+        state.dadosContato.email = dados.email,
+        state.dadosContato.email2 = dados.email2,
+
+        state.dadosPessoais.nome = dados.nome,
+        state.dadosPessoais.dataNascimento = dados.nascimento,
+        state.dadosPessoais.genero = dados.genero,
+        state.dadosPessoais.cpf = dados.cpf,
+        state.dadosPessoais.rg = dados.rg,
+        state.dadosPessoais.ufEmissor = dados.ufEmissor
     }
 };
 
@@ -102,6 +123,7 @@ const actions = {
     async pegaEstados({commit}){
         let resp = await axios.get('http://localhost:8000/api/estado');
         commit('atualizaUfs', resp);
+        return resp;
     },
 
     async saveUser( {state }){
@@ -141,6 +163,13 @@ const actions = {
         const resp = await axios.get('http://localhost:8000/api/usuario');
         state.api.user = resp.data.usuarios;
     },
+
+    async usuarioId({state}, id){
+        if(state){
+            let resp = await axios.get(`http://localhost:8000/api/${id}/usuario`);
+            return resp.data.usuario;
+        }
+    }
 };
 
 export default {

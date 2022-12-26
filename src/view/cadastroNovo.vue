@@ -12,14 +12,18 @@
                 <dados-pessoais class="mt-5"/>
             </v-col>
         </v-row>
-        <v-row>
+        <v-row v-show="!id">
             <v-col cols="8" offset="2" class="teste">
                 <dados-usuario class="mt-5" />
             </v-col>
         </v-row>
         <v-row class="text-center">
-            <v-col cols="8" offset="2" class="teste">
+            <v-col v-if="!id" cols="8" offset="2" class="teste">
                 <v-btn @click="salvar()" class="mr-1" color="primary">Salvar</v-btn>
+                <v-btn to="/" color="error">Voltar</v-btn>
+            </v-col>
+            <v-col v-else cols="8" offset="2" class="teste">
+                <v-btn @click="editar(id)" class="mr-1" color="warning">Editar</v-btn>
                 <v-btn to="/" color="error">Voltar</v-btn>
             </v-col>
         </v-row>
@@ -39,14 +43,28 @@
             dadosUsuario,
         },
 
+        computed:{
+            id(){
+                let id = this.$route.params.id
+                if(id){
+                    return id
+                }
+                return false;
+            }
+        },
+
         methods:{
-            ...mapActions('usuario', ['pegaEstados', 'saveUser']),
+            ...mapActions('usuario', ['pegaEstados', 'saveUser', 'usuarioId']),
             ...mapMutations('usuario', ['reset']),
             salvar(){
                 this.saveUser();
                 this.$router.push('/inicio');
                 this.reset();
             },
+
+            editar(id){
+                this.usuarioId(id);
+            }
         },
 
         async mounted(){
