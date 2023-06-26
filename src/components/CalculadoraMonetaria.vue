@@ -43,7 +43,7 @@
                 <v-card>
                     <v-row>
                         <v-col class="centro">
-                            <h3>Cáculo Monetário</h3>
+                            <h3>Cálculo Monetário</h3>
                         </v-col>
                     </v-row>
                     <v-row class="mt-6">
