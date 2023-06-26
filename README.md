@@ -3,7 +3,7 @@
 ### Images
 
 #### Login (light)
-<img src="assets/tela-login-claro.png">
+<img src="src/assets/tela-login-claro.png">
 
 #### Login (dark)
 <img src="assets/tela-login-escuro.png">
