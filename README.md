@@ -37,7 +37,7 @@ The main purpose of the Currency Update Calculator is to offer a solution to the
 - Code versioning; 
 - Theme dark and light;
 ```
-## Project setup
+### Project setup
 ```
 npm install
 ```
