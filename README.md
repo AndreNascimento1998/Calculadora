@@ -18,13 +18,13 @@ The main purpose of the Currency Update Calculator is to offer a solution to the
 <img src="src/assets/tela-login-escuro.png">
 
 #### Register
-<img src="src/assets/cadastro.png">
+<img src="src/assets/tela-cadastro.png">
 
 #### Calculator (light)
-<img src="src/assets/calculadora-clara.png">
+<img src="src/assets/tela-calculadora-clara.png">
 
 #### Calculator (dark)
-<img src="src/assets/calculadora-escura.png">
+<img src="src/assets/tela-calculadora-escura.png">
 
 ## Used
 ```
